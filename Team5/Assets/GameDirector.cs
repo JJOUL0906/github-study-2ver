@@ -7,15 +7,17 @@ public class GameDirector : MonoBehaviour
 {
     GameObject car;
     GameObject flag;
-    GameObject distance; // TextMeshProUGUI가 붙은 오브젝트
+    TextMeshProUGUI distance; // TextMeshProUGUI로 변경
 
     // Start is called before the first frame update
     void Start()
     {
-        // car, flag, distance 오브젝트 찾기
+        // car, flag 오브젝트 찾기
         this.car = GameObject.Find("car");
         this.flag = GameObject.Find("flag");
-        this.distance = GameObject.Find("Distance");
+
+        // distance 오브젝트의 TextMeshProUGUI 컴포넌트 가져오기
+        this.distance = GameObject.Find("Distance").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -24,7 +26,7 @@ public class GameDirector : MonoBehaviour
         // float 자료형 오타 수정
         float length = this.flag.transform.position.x - this.car.transform.position.x;
 
-        // TextMeshProUGUI 오타 수정
-        this.distance.GetComponent<TextMeshProUGUI>().text = "Distance: " + length.ToString("F2") + "m";
+        // distance 텍스트 업데이트
+        this.distance.text = "Distance: " + length.ToString("F2") + "m";
     }
 }
